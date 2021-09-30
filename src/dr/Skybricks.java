@@ -35,6 +35,9 @@ public class Skybricks implements Plugin {
         AbstractXMLObjectParser skycepMeanPopulationStatisticParser = new SkycepMeanPopulationStatisticParser();
         parsers.add(skycepMeanPopulationStatisticParser);
 
+        AbstractXMLObjectParser skycepLogPopulationStatisticParser = new SkycepLogPopulationSizeStatisticParser();
+        parsers.add(skycepLogPopulationStatisticParser);
+
         AbstractXMLObjectParser skyRateParameterParser = new SkyRateParameterParser();
         parsers.add(skyRateParameterParser);
 
