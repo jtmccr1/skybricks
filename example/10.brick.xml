@@ -3035,6 +3035,13 @@
 			<tree idref="dataTree"/>
 		</constraintsTree>
 	</constrainedTreeModel>
+
+	<simpleMutationBranchMap id="branchMutationCounts" scale="29903.0">
+            <constrainedTreeModel idref="treeModel"/>
+            <dataTree>
+                <tree idref="dataTree"/>
+            </dataTree>
+    </simpleMutationBranchMap>
 <!-- Statistic for root height of the tree       -->
 <!--	<treeHeightStatistic id="treeModel.rootHeight">-->
 <!--		<treeModel idref="treeModel"/>-->
@@ -3125,21 +3132,12 @@
 		</rate>
 	</strictClockBranchRates>
 
-	<thorneyTreeLikelihood id="treeLikelihood">
-		<treeModel idref="treeModel"/>
-
-		<poissonBranchLengthLikelihood id="branchLengthLikelihood" scale="29903.0">
-			<strictClockBranchRates idref="strictBranchRates"/>
-		</poissonBranchLengthLikelihood>
-
-		<constrainedBranchLengthProvider scale="29903.0" discrete="true" minBranchlength="0.0">
-			<treeModel idref="treeModel"/>
-			<dataTree>
-				<tree idref="dataTree"/>
-			</dataTree>
-		</constrainedBranchLengthProvider>
-
-	</thorneyTreeLikelihood>
+    <thorneyTreeLikelihood id="treeLikelihood">
+        <constrainedTreeModel idref="treeModel"/>
+        <mutationBranchMap idref="branchMutationCounts"/>
+        <strictClockBranchRates idref="strictBranchRates"/>
+        <poissonBranchLengthLikelihood id="branchMutationLikelihood" scale="29903.0"/>
+    </thorneyTreeLikelihood>
 
 	<likelihood id="newSkygridLL">
 		<skybrickLikelihood idref="skygrid"/>
@@ -3149,32 +3147,30 @@
 	<!-- Define operators                                                        -->
 	<operators id="operators" optimizationSchedule="default">
 
-<!--		<nodeHeightOperator type="uniform" weight="5">-->
-<!--			<treeModel idref="treeModel"/>-->
-<!--		</nodeHeightOperator>-->
-<!--		-->
-<!--		<nodeHeightOperator type="scaleRoot" weight="1" scaleFactor="0.75" >-->
-<!--			<treeModel idref="treeModel"/>-->
-<!--		</nodeHeightOperator>-->
-<!--		-->
-<!--		<uniformSubtreePruneRegraft weight="5">-->
-<!--			<constrainedTreeModel idref="treeModel"/>-->
-<!--		</uniformSubtreePruneRegraft>-->
-<!--		-->
-<!--		<narrowExchange weight="1">-->
-<!--			<constrainedTreeModel idref="treeModel"/>-->
-<!--		</narrowExchange>-->
-<!--		-->
-<!--		<wideExchange weight="1">-->
-<!--			<constrainedTreeModel idref="treeModel"/>-->
-<!--		</wideExchange>-->
-<!--		-->
-<!--		<wilsonBalding weight="1">-->
-<!--			<constrainedTreeModel idref="treeModel"/>-->
-<!--		</wilsonBalding>-->
-<!--		<scaleOperator scaleFactor="0.75" weight="30">-->
-<!--			<parameter idref="skygrid.PopSize"/>-->
-<!--		</scaleOperator>		-->
+		<nodeHeightOperator type="uniform" weight="5">
+			<treeModel idref="treeModel"/>
+		</nodeHeightOperator>
+		
+		<nodeHeightOperator type="scaleRoot" weight="1" scaleFactor="0.75" >
+			<treeModel idref="treeModel"/>
+		</nodeHeightOperator>
+		
+		<uniformSubtreePruneRegraft weight="5">
+			<constrainedTreeModel idref="treeModel"/>
+		</uniformSubtreePruneRegraft>
+		
+		<narrowExchange weight="1">
+			<constrainedTreeModel idref="treeModel"/>
+		</narrowExchange>
+		
+		<wideExchange weight="1">
+			<constrainedTreeModel idref="treeModel"/>
+		</wideExchange>
+		
+		<wilsonBalding weight="1">
+			<constrainedTreeModel idref="treeModel"/>
+		</wilsonBalding>
+
 		
 		<scaleOperator scaleFactor="0.75" weight="3">
 			<parameter idref="skygrid.precision"/>

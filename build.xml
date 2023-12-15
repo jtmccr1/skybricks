@@ -51,7 +51,7 @@
     <target name="compile-basic"
             depends="init">
         <!-- Compile the java code from ${src} into ${build} -->
-        <javac source="1.8" srcdir="${src}" destdir="${build}"
+        <javac source="1.8" srcdir="${src}" includeantruntime="false"  destdir="${build}"
                classpath="${lib}/beast.jar">
             <include name="${plugin-package}/**/*.java"/>
         </javac>

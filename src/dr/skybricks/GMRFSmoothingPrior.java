@@ -1,7 +1,7 @@
 package dr.skybricks;
 
 
-import dr.inference.glm.GeneralizedLinearModel;
+import dr.inference.distribution.GeneralizedLinearModel;
 import dr.inference.model.*;
 import dr.xml.XMLParseException;
 import no.uib.cipr.matrix.DenseVector;
@@ -179,26 +179,26 @@ public interface GMRFSmoothingPrior extends Model, Likelihood {
 
                 covariates = new ArrayList<MatrixParameter>();
                 betaList = new ArrayList<Parameter>();
-                List<DesignMatrix> designMat = glm.getDesignMatrix();
-                List<Parameter> indepParam = glm.getIndependentParameter();
-                List<Parameter> indepParamDelta = glm.getIndependentParameterDelta();
+                DesignMatrix designMat = glm.getDesignMatrix(0);
+                Parameter indepParam = glm.getFixedEffect(0);
+                Parameter indepParamDelta = glm.getFixedEffectIndicator(0);
                 deltaList = new ArrayList<Parameter>();
 
-                for(int i = 0; i < indepParam.get(0).getSize(); i++){
-                    MatrixParameter matParam = new MatrixParameter("covariate values", 1,designMat.get(0).getRowDimension());
+                for(int i = 0; i < indepParam.getSize(); i++){
+                    MatrixParameter matParam = new MatrixParameter("covariate values", 1,designMat.getRowDimension());
 
                     for(int j = 0; j < matParam.getRowDimension(); j++){
-                        matParam.setParameterValue(0, j, designMat.get(0).getParameterValue(0, j));
+                        matParam.setParameterValue(0, j, designMat.getParameterValue(0, j));
                     }
                     covariates.add(matParam);
 
                     Parameter betaParam = new Parameter.Default(1);
-                    betaParam.setParameterValue(0, indepParam.get(0).getParameterValue(i));
+                    betaParam.setParameterValue(0, indepParam.getParameterValue(i));
                     betaList.add(betaParam);
 
                     if(indepParamDelta != null){
                         Parameter deltaParam = new Parameter.Default(1);
-                        deltaParam.setParameterValue(0, indepParamDelta.get(0).getParameterValue(i));
+                        deltaParam.setParameterValue(0, indepParamDelta.getParameterValue(i));
                         deltaList.add(deltaParam);
                     }
                 }

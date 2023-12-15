@@ -1,6 +1,6 @@
 package dr.skybricksxml;
 
-import dr.inference.glm.GeneralizedLinearModel;
+import dr.inference.distribution.GeneralizedLinearModel;
 import dr.inference.model.MatrixParameter;
 import dr.inference.model.Parameter;
 import dr.skybricks.GMRFSmoothingPrior;

@@ -42,6 +42,10 @@ public class Skybricks implements Plugin {
         parsers.add(skyRateParameterParser);
 
 
+
+        AbstractXMLObjectParser singleDimStat = new SingleDimensionStatisticParser();
+        parsers.add(singleDimStat);
+
         AbstractXMLObjectParser rootHeightProxyParser =  RootHeightProxyParameter.PARSER;
         parsers.add(rootHeightProxyParser);
 
